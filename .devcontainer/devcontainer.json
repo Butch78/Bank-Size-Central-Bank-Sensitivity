@@ -33,7 +33,8 @@
 				"mtxr.sqltools-driver-pg",
 				"ms-vscode.vscode-node-azure-pack",
 				"GitHub.copilot",
-				"GitHub.copilot-chat"
+				"GitHub.copilot-chat",
+				"ms-toolsai.jupyter"
 			],
 			// Set *default* container specific settings.json values on container create.
 			"settings": {
