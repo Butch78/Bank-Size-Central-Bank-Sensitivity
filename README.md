@@ -62,4 +62,4 @@ https://github.com/ipozdeev/it-skills-for-research
 
 
 # Start Application Command 
-```uvicorn src.main:app --reload```
+```uvicorn app.main:app --reload```
