@@ -15,8 +15,6 @@ Project Organization
     │   ├── processed      <- The final, canonical data sets for modeling.
     │   └── raw            <- The original, immutable data dump.
     │
-    ├── docs               <- A default Sphinx project; see sphinx-doc.org for details
-    │
     ├── models             <- Trained and serialized models, model predictions, or model summaries
     │
     ├── notebooks          <- Jupyter notebooks. Naming convention is a number (for ordering),
@@ -31,9 +29,9 @@ Project Organization
     ├── requirements.txt   <- The requirements file for reproducing the analysis environment, e.g.
     │                         generated with `pip freeze > requirements.txt`
     │
-    ├── setup.py           <- makes project pip installable (pip install -e .) so src can be imported
-    ├── src                <- Source code for use in this project.
-    │   ├── __init__.py    <- Makes src a Python module
+    ├── setup.py           <- makes project pip installable (pip install -e .) so app can be imported
+    ├── app                <- Source code for use in this project.
+    │   ├── __init__.py    <- Makes app a Python module
     │   │
     │   ├── data           <- Scripts to download or generate data
     │   │   └── make_dataset.py
@@ -46,8 +44,10 @@ Project Organization
     │   │   ├── predict_model.py
     │   │   └── train_model.py
     │   │
-    │   └── visualization  <- Scripts to create exploratory and results oriented visualizations
-    │       └── visualize.py
+    │   ├──  visualization  <- Scripts to create exploratory and results oriented visualizations
+    │   |   └── visualize.py
+    |   |
+    |   └── main.py <- Main application file for FastAPI application
     │
     └── tox.ini            <- tox file with settings for running tox; see tox.readthedocs.io
 
@@ -55,3 +55,11 @@ Project Organization
 --------
 
 <p><small>Project based on the <a target="_blank" href="https://drivendata.github.io/cookiecutter-data-science/">cookiecutter data science project template</a>. #cookiecutterdatascience</small></p>
+
+
+# Class Materials 
+https://github.com/ipozdeev/it-skills-for-research 
+
+
+# Start Application Command 
+```uvicorn src.main:app --reload```
