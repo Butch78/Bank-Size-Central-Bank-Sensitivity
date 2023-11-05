@@ -31,7 +31,9 @@
 				"ms-python.black-formatter",
 				"mtxr.sqltools",
 				"mtxr.sqltools-driver-pg",
-				"ms-vscode.vscode-node-azure-pack"
+				"ms-vscode.vscode-node-azure-pack",
+				"GitHub.copilot",
+				"GitHub.copilot-chat"
 			],
 			// Set *default* container specific settings.json values on container create.
 			"settings": {

@@ -6,12 +6,10 @@ click
 Sphinx
 coverage
 python-dotenv>=0.5.1
-fastapi==0.95.1
+fastapi==0.104.1
 uvicorn[standard]
-pydantic==1.10.7
 psycopg2==2.9.6
 python-dotenv==1.0.0
-faker==18.7.0
 sqlmodel==0.0.11
 
 
