@@ -1,6 +1,10 @@
 "CubeId";"zikrepro"
 "PublishingDate";"2023-10-02 14:30"
 
+This table will be called deposit_rate, and it is the actual deposit rate data.
+
+The headers should be Date/Value. The two middle columns are classifiers and can be deleted in the processing stage.
+
 "Date";"D0";"D1";"Value"
 "1999-12";"M";"S1";"1.19"
 "2000-01";"M";"S1";"1.19"

@@ -1,6 +1,13 @@
 "CubeId";"snboffzisa"
 "PublishingDate";"2023-10-23 09:00"
 
+This is the specific target rate for the SNB (what we were trying to approximate with the range)/
+It is blank until 2019 because they only had a range, not a target. The data until then could be
+deleted if you want, I just downloaded it for consistency if we wanted to clean it in the processing stage.
+
+The table would be called policy_target, and the headers are date/policy target, the middle value (D0) is 
+a label that can be deleted because we only have one value here, and again, it doesn't show up until june 2019.
+
 "Date";"D0";"Value"
 "2000-01";"LZ";
 "2000-02";"LZ";

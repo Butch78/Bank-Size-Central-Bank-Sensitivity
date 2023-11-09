@@ -1,5 +1,14 @@
 "CubeId";"snbband"
 "PublishingDate";"2019-06-21 09:00"
+Hey Matt! This data is the target range for the SNB policy rate target from 2000 - June 2019
+
+The way it's structured currently, It looks like the lower (UG) and upper (OG) bounds are stacked so
+maybe when we process it, we should also create another two columns and ideally have only one entry for each date.
+I can redownload the data as an xls. file like that if it would just make it easier.
+
+The ideal headings would be Date/Lower bound/upper bound, and the table name here would be target_range or something.
+If we can get the upper and lower values separated into separate columns, there is no need for the column that contains 
+OG/UG, it's just a classifier at the moment.
 
 "Date";"D0";"Value"
 "2000-01-03";"UG";"1.25"
