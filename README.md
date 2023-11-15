@@ -66,5 +66,10 @@ Project Organization
 https://github.com/ipozdeev/it-skills-for-research 
 
 
+
 # Start Application Command 
+
+rename the ```.env.example``` file to ```.env```
+
+Then the following command will load the Data into the PostgresDB
 ```uvicorn app.main:app --reload```
