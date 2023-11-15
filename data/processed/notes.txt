@@ -1,0 +1,3 @@
+data/processed/processed_snb-data-snbband-en-selection-20190621_0900.csv
+
+I removed the tail end of the File because there were no values

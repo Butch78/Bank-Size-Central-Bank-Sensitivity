@@ -2,6 +2,7 @@ import os
 
 from dotenv import load_dotenv
 from sqlmodel import SQLModel, Session, create_engine
+from app.utils.data_import import import_target_range
 
 # Connect to the database
 load_dotenv(".env")
@@ -26,4 +27,11 @@ def create_db_and_tables():
 
 
 def import_data():
-    print(">>> Importing data...")
+    # Use get_session() to get a session
+    session = next(get_session())
+
+    import_target_range(session)
+
+    session.close()
+
+    # Use import_target_range() to get a list of TargetRangesCreate objects
