@@ -7,36 +7,9 @@ from app.schema.target_range import TargetRangesCreate
 from app import crud
 
 
-
-# class Record(BaseModel):
-#     date: datetime
-#     d0: str
-#     d1: str
-#     value: float
-
-
-# records = []
-
-# with open(
-#     "data/processed/processed_snb-data-zikrepro-en-selection-20231002_1430.csv",
-#     newline="\n",
-# ) as csvfile:
-#     reader = csv.DictReader(csvfile, delimiter=";")
-#     for row in reader:
-#         record = Record(
-#             date=datetime.strptime(row["Date"], "%Y-%m"),
-#             d0=row["D0"],
-#             d1=row["D1"],
-#             value=float(row["Value"]),
-#         )
-#         records.append(record)
-
-# print(records)
-
-
 def import_target_ranges(session: Session) -> list[TargetRangesCreate] | None:
     # Check if the database is empty
-    target_range = crud.target_ranges.get(session, id=1)
+    target_range = crud.target_ranges.get(db=session, id=1)
     if target_range:
         return None
 
