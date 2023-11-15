@@ -2,7 +2,8 @@ import os
 
 from dotenv import load_dotenv
 from sqlmodel import SQLModel, Session, create_engine
-from app.utils.data_import import import_target_range
+from app.utils.import_target_ranges import import_target_ranges
+from app.utils.import_deposit_rates import import_deposit_rates
 
 # Connect to the database
 load_dotenv(".env")
@@ -30,7 +31,9 @@ def import_data():
     # Use get_session() to get a session
     session = next(get_session())
 
-    import_target_range(session)
+    import_target_ranges(session)
+    import_deposit_rates(session)
+    
 
     session.close()
 
