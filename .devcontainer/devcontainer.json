@@ -34,7 +34,9 @@
 				"ms-vscode.vscode-node-azure-pack",
 				"GitHub.copilot",
 				"GitHub.copilot-chat",
-				"ms-toolsai.jupyter"
+				"ms-toolsai.jupyter",
+				"ms-azuretools.vscode-docker",
+				"James-Yu.latex-workshop"
 			],
 			// Set *default* container specific settings.json values on container create.
 			"settings": {
