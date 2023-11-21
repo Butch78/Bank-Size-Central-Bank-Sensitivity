@@ -5,6 +5,7 @@ from sqlmodel import SQLModel, Session, create_engine
 from app.utils.import_target_ranges import import_target_ranges
 from app.utils.import_deposit_rates import import_deposit_rates
 from app.utils.import_target_rates import import_target_rates
+from sqlalchemy import text
 
 # Connect to the database
 load_dotenv(".env")
@@ -40,3 +41,34 @@ def import_data():
     session.close()
 
     # Use import_target_range() to get a list of TargetRangesCreate objects
+
+
+def create_read_only_user():
+    # TODO create a read-only user
+
+    session = next(get_session())
+
+    # Create a new user
+    session.execute(text("CREATE USER user_read_only WITH PASSWORD 'LocalPasswordOnly';"))
+    session.commit()
+
+    # Grant USAGE privilege to the new user on the public schema
+    session.execute(text("GRANT USAGE ON SCHEMA public TO user_read_only;"))
+    session.commit()
+
+    # Grant SELECT privilege to the new user on all tables in the public schema
+    session.execute(text("GRANT SELECT ON ALL TABLES IN SCHEMA public TO user_read_only;"))
+    session.commit()
+
+    # Set the default privileges to grant SELECT privilege to the new user on future tables
+    session.execute(
+        text(
+            "ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT SELECT ON TABLES TO user_read_only;"
+        )
+    )
+    session.execute(
+        text(
+            "ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT SELECT ON TABLES TO user_read_only;"
+        )
+    )
+    session.commit()
