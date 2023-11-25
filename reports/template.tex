@@ -2,6 +2,7 @@
 \usepackage{amsmath}
 \usepackage{dcolumn}
 \usepackage{threeparttable}
+\usepackage{geometry}
 
 \newcolumntype{d}[1]{D{.}{.}{#1}}
 
@@ -23,12 +24,56 @@
 
 % ---------------------------------------------------------------------------
 
+\usepackage{graphicx}  % for including images
+\usepackage{titling}   % for more control over the title
+\title{\textbf{Exploring the Relationship Between Bank Size And Sensitivity to Central Bank Policy Rate Changes}}
+
+\author{Your Name}
+\date{\today}
+
 \begin{document}
 
-\section{This is the highest level section header: some text}
-\blindtext[1]
+\begin{titlepage}
+    \centering
+    \vspace*{-1cm} % Adjust the value as needed to reduce space
+    \centering
+    \includegraphics[width=0.6\textwidth]{University_of_Zurich_seal.svg.png} % Replace 'your_logo.png' with your actual logo file
+    \vspace{2cm}
+    
+    {\LARGE\textbf{University of Zurich}}
+    \vspace{1cm}
+    
+    \hrule
+    \vspace{0.5cm}
+    
+    {\huge\thetitle}
+    \vspace{0.5cm}
+    
+    \hrule
+    \vspace{1cm}
+    
+    \textbf{Authors:}\\ John Hojnacki \\ Matthew Aylward \\ Victoria Gemperle
+    \vspace{1cm}
+    
+    \textbf{Date:}\\
+    \thedate
+    \vfill
 
-A new system to be aligned
+    
+\end{titlepage}
+
+\section{Introduction}
+
+    \linespread{1}  % Adjust the factor as needed
+    
+Central Banks around the world implement monetary policy in a variety of different ways, but one key transmission mechanism is typically a short-term rate at which commercial banks can borrow from the central bank. This rate, the ‘policy rate’, effectively becomes a floor on other rates, and measuring the sensitivity of other rates, such as the deposit rate, to changes in the policy rate, can give an indication as to how quickly monetary policy is transmitted in each cycle. For this project, the objective is to evaluate the sensitivity of deposit rates on consumer savings accounts to changes in the central banks’ policy rate across different economic cycles. The methodology can be expanded to evaluate multiple countries cross sectionally, or to evaluate a single country over several cycles.
+
+\section{Data}
+
+This project uses monthly policy rates and deposit rates for a particular country. If a country doesn't have a specific target, it may be extrapolated from a target range. In the example case, we use the midpoint of a range from the Swiss National Bank from 2000-2019, and then a target from 2019 onwards (they introduced a target at that time).\\
+
+The methodology applied in this project is designed to be replicable across different countries and time periods, which allows for its usage in scenarios where central banks provide explicit targets, target ranges, or operate without a clearly defined target. The project can be employed to analyze and compare the sensitivity of deposit rates on consumer savings accounts to changes in central banks’ policy rates across different economic and temporal contexts. This cross-country and cross-temporal applicability assures the project's utility in capturing variations in monetary policy transmission mechanisms globally.
+
 \begin{align}
 	x ^ 2 + y ^ 2 &= 1 \\
 	a \& b \& c \& d &= \omega
