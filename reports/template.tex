@@ -3,6 +3,8 @@
 \usepackage{dcolumn}
 \usepackage{threeparttable}
 \usepackage{geometry}
+\usepackage{graphicx}
+\graphicspath{{../figures/}} % Specify the relatlive path to the "images" folder
 
 \newcolumntype{d}[1]{D{.}{.}{#1}}
 
@@ -35,32 +37,27 @@
 
 \begin{titlepage}
     \centering
-    \vspace*{-1cm} % Adjust the value as needed to reduce space
-    \centering
-    \includegraphics[width=0.6\textwidth]{University_of_Zurich_seal.svg.png} % Replace 'your_logo.png' with your actual logo file
+    \vspace*{-1.5cm} % Adjust the value as needed to reduce space
+    \includegraphics[width=0.4\textwidth]{Test/University_of_Zurich_seal.svg.png} % Add your project logo
+    
     \vspace{2cm}
+    \Huge
+    \textbf{Exploring the Relationship Between Bank Size And Sensitivity to Central Bank Policy Rate Changes}
     
-    {\LARGE\textbf{University of Zurich}}
     \vspace{1cm}
+    \LARGE
+    Subtitle or Project Description
     
-    \hrule
-    \vspace{0.5cm}
-    
-    {\huge\thetitle}
-    \vspace{0.5cm}
-    
-    \hrule
     \vspace{1cm}
-    
     \textbf{Authors:}\\ John Hojnacki \\ Matthew Aylward \\ Victoria Gemperle
     \vspace{1cm}
     
     \textbf{Date:}\\
     \thedate
     \vfill
-
     
 \end{titlepage}
+
 
 \section{Introduction}
 
@@ -74,28 +71,40 @@ This project uses monthly policy rates and deposit rates for a particular countr
 
 The methodology applied in this project is designed to be replicable across different countries and time periods, which allows for its usage in scenarios where central banks provide explicit targets, target ranges, or operate without a clearly defined target. The project can be employed to analyze and compare the sensitivity of deposit rates on consumer savings accounts to changes in central banks’ policy rates across different economic and temporal contexts. This cross-country and cross-temporal applicability assures the project's utility in capturing variations in monetary policy transmission mechanisms globally.
 
-\begin{align}
-	x ^ 2 + y ^ 2 &= 1 \\
-	a \& b \& c \& d &= \omega
-\end{align}
+\section{History in a Swiss Context}
 
-A table with numbers aligned at the decimal separator:
+In December of 1999, the Swiss National Bank (‘SNB’) announced its intention to steer money market rates through the mechanism of a target range, a departure from the previous policy of targeting money supply. This change also coincided with the decision to begin tightening monetary policy over the next year. (source: SNB Quarterly bulletin, December 1999). This hiking cycle is the first of four which appears in the period of our analysis for Switzerland (2000, 2004, 4Q05-, and 2022-present day). However, the short hiking cycle in 2004 will be left out of our discussion for two reasons. First, the commentary from the SNB itself in the Monetary Policy Report at the time noted that while it was increasing the target range, overall policy remained expansionary. The second reason is that the hikes in this period were simply a reversal of the cuts which had taken place in March of 2003 to address deflation concerns. This resulted in no change in deposit rates, which interestingly had also experienced a muted reaction to the prior cut. The next true tightening of financial conditions began in March of 2006, and continued steadily until the Global Financial Crisis (“GFC”) necessitated easing of rates once again. The last hiking cycle begins in the wake of recovery from the Covid-19 Pandemic and continues through the time of this writing.  
 
-\begin{table}[h!]
+\begin{figure}[h]
     \centering
-    \begin{tabular}{|d{2}|d{2}|d{2}|d{2}|}
-        \hline
-        10.23 & 3.45 & 6.78 & 9.01 \\
-        2.34 & -4.56 & 7.89 & 0.12 \\
-        3.45 & 5.67 & \pm 8.90 & 100.23 \\
-        \hline
-    \end{tabular}
-    \caption{Example Table with Decimal Alignment}
-\end{table}
-  
-\cite{CieslakEtAlStockReturns} is a fine read.
+    \includegraphics[width=0.8\textwidth]{Test/deposit_summary_SNB.pdf}
+    \caption{Deposit Rates Summary across Hiking Periods}
+    \label{fig:deposit_summary}
+\end{figure}
 
-\printbibliography
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Test/rates_shaded_SNB.pdf}
+    \caption{Policy and Deposit Rates for Switzerland}
+    \label{fig:rates_shaded}
+\end{figure}
 
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Test/hiking_summary_SNB.pdf}
+    \caption{Hiking Cycles Across Time}
+    \label{fig:your_pdf}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Test/deposit_beta_SNB.pdf}
+    \caption{Cumulative Swiss Deposit Betas in Hiking Cycles}
+    \label{fig:your_pdf}
+\end{figure}
+
+% Bibliography section
+\newpage  % Start a new page for the bibliography
+\printbibliography[title={References}]  % "References" is the default title, you can customize it
 
 \end{document}
