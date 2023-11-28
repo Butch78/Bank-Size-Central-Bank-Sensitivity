@@ -17,6 +17,13 @@ Project Organization
 
     ├── LICENSE
     ├── README.md          <- The top-level README for developers using this project.
+    ├── assets             <- Images used in the README.md file
+    |
+    ├── .devcontainer               <- Folder for the devcontainer configuration files and Dockerfile & Docker Compose files
+    │   ├── Dockerfile              <- Dockerfile for the devcontainer
+    │   ├── devcontainer.json       <- Devcontainer configuration file
+    │   └── docker-compose.yml      <- Docker Compose file for the devcontainer
+    │
     ├── data
     │   ├── external       <- Data from third party sources.
     │   ├── interim        <- Intermediate data that has been transformed.
@@ -66,6 +73,8 @@ Project Organization
 
 <p><small>Project based on the <a target="_blank" href="https://drivendata.github.io/cookiecutter-data-science/">cookiecutter data science project template</a>. #cookiecutterdatascience</small></p>
 
+Using Dev Containers we were able to create a Docker container that will automatically install the requirements.txt file and create a PostgresDB instance. This will allow us to run the application locally and in Github Codespaces. You can learn more about Dev Containers here: <https://code.visualstudio.com/docs/remote/containers>
+
 # Class Materials
 
 <https://github.com/ipozdeev/it-skills-for-research>
@@ -104,3 +113,5 @@ Then the following command will load the Data into the PostgresDB
 ```bash
 uvicorn app.main:app --reload
 ```
+
+ 
