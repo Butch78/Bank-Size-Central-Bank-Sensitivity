@@ -1,81 +1,116 @@
 Deposit rate sensitivity
-==============================
 
 Exploring the relationship between bank size and sensitivity to central bank policy rate changes.
 
 ## Description
-Central Banks around the world implement monetary policy in a variety of different ways, but one key transmission mechanism is typically a short-term rate at which commercial banks can borrow from the central bank. This rate, the ‘policy rate’, effectively becomes a floor on other rates, and measuring the sensitivity of other rates, such as the deposit rate, to changes in the policy rate, can give an indication as to how quickly monetary policy is transmitted in each cycle. For this project, the objective is to evaluate the sensitivity of deposit rates on consumer savings accounts to changes in the central banks’ policy rate across different economic cycles. The methodology can be expanded to evaluate multiple countries cross sectionally, or to evaluate a single country over several cycles.
 
-## Requirements
-### Data
-This project uses monthly policy rates and deposit rates for a particular country. If a country doesn't have a specific target, it may be extrapolated from a target range. In the example case, we use the midpoint of a range from the Swiss National Bank from 2000-2019, and then a target from 2019 onwards (they introduced a target at that time).
+Central Banks around the world implement monetary policy in a variety of different ways, but one key transmission mechanism is typically a short-term rate at which commercial banks can borrow from the central bank. This rate, the ‘policy rate’, effectively becomes a floor on other rates, and measuring the sensitivity of other rates, such as the deposit rate, to changes in the policy rate, can give an indication as to how quickly monetary policy is transmitted in each cycle. For this project, the objective is to evaluate the sensitivity of deposit rates on consumer savings accounts to changes in the central banks’ policy rate across different economic cycles. The methodology can be expanded to evaluate multiple countries cross sectionally, or to evaluate a single country over several cycles.
 
 The methodology applied in this project is designed to be replicable across different countries and time periods, which allows for its usage in scenarios where central banks provide explicit targets, target ranges, or operate without a clearly defined target. The project can be employed to analyze and compare the sensitivity of deposit rates on consumer savings accounts to changes in central banks’ policy rates across different economic and temporal contexts. This cross-country and cross-temporal applicability assures the project's utility in capturing variations in monetary policy transmission mechanisms globally.
 
+### Data
+
+This project uses monthly policy rates and deposit rates for a particular country. If a country doesn't have a specific target, it may be extrapolated from a target range. In the example case, we use the midpoint of a range from the Swiss National Bank from 2000-2019, and then a target from 2019 onwards (they introduced a target at that time).
 
 Project Organization
 ------------
 
     ├── LICENSE
-    ├── Makefile           <- Makefile with commands like `make data` or `make train`
     ├── README.md          <- The top-level README for developers using this project.
+    ├── assets             <- Images used in the README.md file
+    |
+    ├── .devcontainer               <- Folder for the devcontainer configuration files and Dockerfile & Docker Compose files
+    │   ├── Dockerfile              <- Dockerfile for the devcontainer
+    │   ├── devcontainer.json       <- Devcontainer configuration file
+    │   └── docker-compose.yml      <- Docker Compose file for the devcontainer
+    │
     ├── data
     │   ├── external       <- Data from third party sources.
     │   ├── interim        <- Intermediate data that has been transformed.
     │   ├── processed      <- The final, canonical data sets for modeling.
     │   └── raw            <- The original, immutable data dump.
     │
-    ├── models             <- Trained and serialized models, model predictions, or model summaries
-    │
-    ├── notebooks          <- Jupyter notebooks. Naming convention is a number (for ordering),
-    │                         the creator's initials, and a short `-` delimited description, e.g.
-    │                         `1.0-jqp-initial-data-exploration`.
-    │
-    ├── references         <- Data dictionaries, manuals, and all other explanatory materials.
+    ├── notebooks          <- Jupyter notebooks. 
     │
     ├── reports            <- Generated analysis as HTML, PDF, LaTeX, etc.
     │   └── figures        <- Generated graphics and figures to be used in reporting.
     |   └── template.tex   <- To compile the LaTeX document into a PDF report, ensure that the PDFs generated in "figures" are placed in the same directory as main .tex file. 
     │
-    ├── requirements.txt   <- The requirements file for reproducing the analysis environment, e.g.
-    │                         generated with `pip freeze > requirements.txt`
-    │
-    ├── setup.py           <- makes project pip installable (pip install -e .) so app can be imported
     ├── app                <- Source code for use in this project.
     │   ├── __init__.py    <- Makes app a Python module
+    |   ├── main.py        <- Main application file for FastAPI application
+    │   ├── api            <- Configuration file for FastAPI application
+    |   |   ├── api_v1
+    |   |   |   └─ restaurants.py   <- API endpoint for restaurants an example endpoint if we wanted to extend the application    
+    │   │   └── api.py              <- API endpoints for the application
     │   │
-    │   ├── data           <- Scripts to download or generate data
-    │   │   └── make_dataset.py
+    │   ├── crud                        <- The CRUD (Create, Read, Update, Delete) operations folder for the application
+    │   │   ├── base.py                 <- Base CRUD operations
+    |   |   ├── __init__.py             <- Makes crud a Python module
+    |   |   ├── crud_deposit_rates.py   <- CRUD operations for deposit rates
+    |   |   ├── crud_target_ranges.py   <- CRUD operations for target ranges
+    |   |   ├── crud_target_rates.py    <- CRUD operations for target rates
+    |   |   └── crud_restaurants.py     <- CRUD operations for restaurants an example object if we wanted to extend the application
     │   │
-    │   ├── features       <- Scripts to turn raw data into features for modeling
-    │   │   └── build_features.py
+    │   ├── schema                      <- Folder for the SQLModel models for the application
+    │   │   ├── deposit_rate.py         <- SQLModel model for deposit rates
+    │   │   ├── target_rate.py          <- SQLModel model for target rates
+    │   │   ├── restaurant.py           <- SQLModel model for restaurants an example object if we wanted to extend the application
+    |   |   └── target_range.py         <- SQLModel model for target ranges
+    |   |  
     │   │
-    │   ├── models         <- Scripts to train models and then use trained models to make
-    │   │   │                 predictions
-    │   │   ├── predict_model.py
-    │   │   └── train_model.py
-    │   │
-    │   ├──  visualization  <- Scripts to create exploratory and results oriented visualizations
-    │   |   └── visualize.py
-    |   |
-    |   └── main.py <- Main application file for FastAPI application
-    │
-    └── tox.ini            <- tox file with settings for running tox; see tox.readthedocs.io
-
+    │   └── utils                                   <- Scripts to import data and create the database
+    │       ├── config.py                           <- Configuration file for the application that loads the environment variables
+    │       ├─── deps.py                            <- Dependency file for the application that creates the database connection
+    │       ├─── import_deposit_rates.py            <- Script to import deposit rates
+    │       ├─── import_target_rates.py             <- Script to import target rates
+    │       └─── import_target_ranges.py            <- Script to import target ranges
+    │   
+    ├── requirements.txt   <- The requirements file for reproducing the analysis environment, e.g.
+    │                         generated with `pip freeze > requirements.txt`
+    └── env.example        <- Environment variables for the application
 
 --------
 
 <p><small>Project based on the <a target="_blank" href="https://drivendata.github.io/cookiecutter-data-science/">cookiecutter data science project template</a>. #cookiecutterdatascience</small></p>
 
+Using Dev Containers we were able to create a Docker container that will automatically install the requirements.txt file and create a PostgresDB instance. This will allow us to run the application locally and in Github Codespaces. You can learn more about Dev Containers here: <https://code.visualstudio.com/docs/remote/containers>
 
-# Class Materials 
-https://github.com/ipozdeev/it-skills-for-research 
+# Class Materials
 
+<https://github.com/ipozdeev/it-skills-for-research>
 
+# Set Up Instructions
 
-# Start Application Command 
+## Github Codespaces
+
+If you are running the application in Github Codespaces it should Automatically build the application and install the ```requirements.txt``` file. if not run the following command in the terminal:
+
+```bash
+pip install -r requirements.txt
+```
+
+## Local Machine
+
+1. Ensure you have Docker installed on your local machine, if not follow the instructions here: <https://docs.docker.com/get-docker/>
+
+2. Clone the repository to your local machine
+   ```git clone https://github.com/Butch78/Bank-Size-Central-Bank-Sensitivity.git```
+
+3. After you open the project, the following pop-up should appear. Click "Reopen in Container"
+
+![Alt text](assets/dev_containter_popup.png)
+
+If not click the green button in the bottom left corner and then select "Reopen in Container"
+
+This will build the Docker container and install the requirements.txt file automatically along with creating a PostgresDB instance.
+
+# Start Application Command
 
 rename the ```.env.example``` file to ```.env```
 
 Then the following command will load the Data into the PostgresDB
-```uvicorn app.main:app --reload```
+
+```bash
+uvicorn app.main:app --reload
+```
