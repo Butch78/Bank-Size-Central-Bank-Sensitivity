@@ -1,5 +1,4 @@
 Deposit rate sensitivity
-==============================
 
 Exploring the relationship between bank size and sensitivity to central bank policy rate changes.
 
@@ -7,6 +6,7 @@ Exploring the relationship between bank size and sensitivity to central bank pol
 
 Central Banks around the world implement monetary policy in a variety of different ways, but one key transmission mechanism is typically a short-term rate at which commercial banks can borrow from the central bank. This rate, the ‘policy rate’, effectively becomes a floor on other rates, and measuring the sensitivity of other rates, such as the deposit rate, to changes in the policy rate, can give an indication as to how quickly monetary policy is transmitted in each cycle. For this project, the objective is to evaluate the sensitivity of deposit rates on consumer savings accounts to changes in the central banks’ policy rate across different economic cycles. The methodology can be expanded to evaluate multiple countries cross sectionally, or to evaluate a single country over several cycles.
 
+The methodology applied in this project is designed to be replicable across different countries and time periods, which allows for its usage in scenarios where central banks provide explicit targets, target ranges, or operate without a clearly defined target. The project can be employed to analyze and compare the sensitivity of deposit rates on consumer savings accounts to changes in central banks’ policy rates across different economic and temporal contexts. This cross-country and cross-temporal applicability assures the project's utility in capturing variations in monetary policy transmission mechanisms globally.
 
 ### Data
 
@@ -33,7 +33,8 @@ Project Organization
     ├── notebooks          <- Jupyter notebooks. 
     │
     ├── reports            <- Generated analysis as HTML, PDF, LaTeX, etc.
-    │   └── figures        <- Generated graphics and figures to be used in reporting
+    │   └── figures        <- Generated graphics and figures to be used in reporting.
+    |   └── template.tex   <- To compile the LaTeX document into a PDF report, ensure that the PDFs generated in "figures" are placed in the same directory as main .tex file. 
     │
     ├── app                <- Source code for use in this project.
     │   ├── __init__.py    <- Makes app a Python module
@@ -113,5 +114,3 @@ Then the following command will load the Data into the PostgresDB
 ```bash
 uvicorn app.main:app --reload
 ```
-
- 
