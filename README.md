@@ -74,9 +74,11 @@ Project Organization
 
 ## Github Codespaces
 
-If you are running the application in Github Codespaces it should Automatically install the ```requirements.txt``` file. if not run the following command in the terminal
+If you are running the application in Github Codespaces it should Automatically build the application and install the ```requirements.txt``` file. if not run the following command in the terminal:
 
-```pip install -r requirements.txt```
+```bash
+pip install -r requirements.txt
+```
 
 ## Local Machine
 
@@ -99,4 +101,6 @@ rename the ```.env.example``` file to ```.env```
 
 Then the following command will load the Data into the PostgresDB
 
-```uvicorn app.main:app --reload```
+```bash
+uvicorn app.main:app --reload
+```
