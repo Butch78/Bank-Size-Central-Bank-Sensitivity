@@ -48,8 +48,25 @@ def create_read_only_user():
 
     session = next(get_session())
 
-    # Create a new user
-    session.execute(text("CREATE USER user_read_only WITH PASSWORD 'LocalPasswordOnly';"))
+    # Create a new user if it doesn't already exist
+
+    session.execute(
+        text(
+            """
+            DO
+            $do$
+            BEGIN
+            IF NOT EXISTS (
+                SELECT FROM pg_catalog.pg_user 
+                WHERE  usename = 'user_read_only') THEN
+                
+                CREATE USER user_read_only WITH PASSWORD 'LocalPasswordOnly';
+            END IF;
+            END
+            $do$
+            """
+        )
+    )
     session.commit()
 
     # Grant USAGE privilege to the new user on the public schema
@@ -57,7 +74,9 @@ def create_read_only_user():
     session.commit()
 
     # Grant SELECT privilege to the new user on all tables in the public schema
-    session.execute(text("GRANT SELECT ON ALL TABLES IN SCHEMA public TO user_read_only;"))
+    session.execute(
+        text("GRANT SELECT ON ALL TABLES IN SCHEMA public TO user_read_only;")
+    )
     session.commit()
 
     # Set the default privileges to grant SELECT privilege to the new user on future tables
