@@ -109,7 +109,7 @@ This will build the Docker container and install the requirements.txt file autom
 
 rename the ```.env.example``` file to ```.env```
 
-Then the following command will load the Data into the PostgresDB
+Then the following command will load the Data into the PostgresDB and start a FastAPI application on port 8000, You can view the API documentation at <http://localhost:8000/docs>
 
 ```bash
 uvicorn app.main:app --reload
