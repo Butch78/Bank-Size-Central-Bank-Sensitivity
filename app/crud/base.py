@@ -42,10 +42,9 @@ class CRUDBase(Generic[ModelType, CreateSchemaType, UpdateSchemaType]):
         self, db: Session, *, obj_in: List[CreateSchemaType]
     ) -> List[SQLModel]:
         try:
-            db_models = []
-            for item in obj_in:
-                db_model = self.create(db=db, obj_in=item)
-                db_models.append(db_model)
+            db_models = [self.model(**item.dict()) for item in obj_in]
+            db.add_all(db_models)
+            db.commit()
             return db_models
         except Exception as e:
             print(f"{self.model.__name__} not created")
