@@ -14,7 +14,7 @@ class TargetRates(SQLModel, table=True):
     value: float = Field(..., description="The value of the SNB policy rate target")
 
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 
 class TargetRatesCreate(TargetRatesBase):

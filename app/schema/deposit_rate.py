@@ -14,7 +14,7 @@ class DepositRates(SQLModel, table=True):
     value: float = Field(..., description="The actual deposit rate data")
 
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 
 class DepositRatesCreate(DepositRatesBase):

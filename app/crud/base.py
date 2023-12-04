@@ -29,7 +29,7 @@ class CRUDBase(Generic[ModelType, CreateSchemaType, UpdateSchemaType]):
     def create(self, db: Session, *, obj_in: CreateSchemaType) -> Optional[SQLModel]:
         try:
             print(obj_in)
-            db_model = self.model.from_orm(obj_in)
+            db_model = self.model.from_attributes(obj_in)
             db.add(db_model)
             db.commit()
             db.refresh(db_model)
