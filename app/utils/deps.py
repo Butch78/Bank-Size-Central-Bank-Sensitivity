@@ -7,12 +7,14 @@ from app.utils.import_deposit_rates import import_deposit_rates
 from app.utils.import_target_rates import import_target_rates
 from sqlalchemy import text
 
+from app.utils.config import settings
+
 # Connect to the database
 load_dotenv(".env")
-DBUSER = os.environ["DBUSER"]
-DBPASS = os.environ["DBPASS"]
-DBHOST = os.environ["DBHOST"]
-DBNAME = os.environ["DBNAME"]
+DBUSER = settings.DBUSER
+DBPASS = settings.DBPASS
+DBHOST = settings.DBHOST
+DBNAME = settings.DBNAME
 DATABASE_URI = f"postgresql://{DBUSER}:{DBPASS}@{DBHOST}/{DBNAME}"
 if DBHOST != "localhost":
     DATABASE_URI += "?sslmode=require"
