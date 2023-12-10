@@ -3,7 +3,6 @@
 \usepackage{helvet}
 \usepackage{caption}
 \usepackage{xcolor}
-
 \renewcommand{\familydefault}{\sfdefault}
 
 % Define colors
@@ -11,7 +10,7 @@
 \definecolor{myBulletColor}{RGB}{0, 166, 126} % For bullets
 \definecolor{myHeaderColor}{RGB}{0, 166, 126} % For headers
 
-% Apply the colors to the bullets
+% Apply colors
 \setbeamercolor{itemize item}{fg=myBulletColor}
 \setbeamercolor{itemize subitem}{fg=myBulletColor}
 \setbeamercolor{itemize subsubitem}{fg=myBulletColor}
@@ -45,7 +44,17 @@
   {\small\inserttocsubsection}\par
 }
 
-% Descriptive info
+% Bibliography Settings
+\usepackage[
+    backend=biber,
+    style=numeric,
+    url=false,
+    doi=false,
+    eprint=false
+]{biblatex}
+\addbibresource{bibliography.bib}
+
+% Meta data
 \title{Analysis of Deposit Rate Pass Through Effects in Tightening Cycles}
 \institute{University of Zurich}
 \author{John Hojnacki, Matthew Alyward, Victoria Gemperle}
@@ -69,7 +78,7 @@
 \frametitle{Introduction to Project: Motivation}
 \begin{itemize}
   \item When central banks raise policy rates, it's expected that other rates follow suit.
-  \item Deposit rates on savings for private consumers are of particular importance because they affect most (98.6 percent) <insert source> households.
+  \item Deposit rates on savings for private consumers are of particular importance because they affect most (98.6 percent) households\cite{scf2022}.
   \item How quickly and how much deposit rates "catch up" with policy rates has important implications yet remains difficult to measure due to major differences in starting points for rate hikes over time.
   \item Comparing relative and absolute changes in interest rates alone may result in extreme results that lack meaning, for example an increase of 50 basis points from a starting point of zero or negative rates has no economic interpretation.
 \end{itemize}
@@ -80,7 +89,7 @@
 \frametitle{Introduction to Project: Approach}
 \begin{itemize}
   \item Our project uses a novel approach to compare the response speed and extent of deposit rate sensitivity to policy rate hikes within a country.
-  \item We utilize the concept of 'cumulative deposit beta' to measure the total change in deposit rates against policy rates, inspired by recent NY Fed research. <insert reference>
+  \item We utilize the concept of 'cumulative deposit beta' to measure the total change in deposit rates against policy rates, inspired by recent NY Fed research\cite{deposit2023}. 
   \item This beta provides a comparative metric across different rate hike cycles.
   \item Our research contributes to the literature by analyzing deposit rate sensitivity in Switzerland and offers an open-source methodology for wider application.
 \end{itemize}
@@ -92,9 +101,11 @@
 \frametitle{Data and Methodology: Data Requirements}
 \begin{itemize}
   \item In principle, only two data sets are needed to run the analysis, policy rates and deposit rates over time.
-  \item If one or both of these data sets is unavailable for a sufficient time period, they can be approximated from alternative data with similar economic meaning.
-  \item In the NY Fed research that we used for inspiration, deposit rates are estimated using bank financial statements, taking total interest paid over total interest bearing deposits. 
-  \item In our own analysis which follows in this presentation, we estimate a policy rate for Switzerland that is the midpoint of an upper and lower target range.
+  \item If one or both of these data sets is unavailable for a sufficient time period, they can be approximated from alternative data with similar economic meaning. For example:
+  \begin{itemize}
+    \item In the NY Fed research that we used for inspiration, deposit rates are estimated using bank financial statements, taking total interest paid over total interest bearing deposits. 
+    \item In our own analysis which follows in this presentation, we estimate a policy rate for Switzerland that is the midpoint of an upper and lower target range.
+  \end{itemize}  
   \end{itemize}
 \end{frame}
 
@@ -152,11 +163,11 @@ A higher \( \beta_t \) indicates a stronger response of deposit rates to policy 
 \frametitle{Swiss Case Study: Interest Rates over Time}
 \text{Historical visualization of interest rates in Switzerland}
 \begin{center}
-\begin{minipage}{0.8\textwidth}
+\begin{minipage}{1\textwidth}
 \begin{figure}[H]
     \includegraphics[width=\textwidth]{Test/rates_shaded_SNB.pdf}
     \captionsetup{font=tiny,labelfont={color=black},justification=raggedright,singlelinecheck=off}
-    \caption{Policy and Deposit Rates for Switzerland}
+    \caption{Policy and Deposit Rates for Switzerland, Source: SNB Data Portal \cite{snb2023}}
     \label{fig:rates_shaded}
 \end{figure}
 \end{minipage}
@@ -169,22 +180,22 @@ A higher \( \beta_t \) indicates a stronger response of deposit rates to policy 
 \text{Identification of Hiking Cycles and Rising Deposit Rates}
 
 \begin{center}
-\begin{minipage}{0.8\textwidth}
+\begin{minipage}{1\textwidth}
 \begin{figure}[H]
     \includegraphics[width=\textwidth]{Test/hiking_summary_SNB.pdf}
     \captionsetup{font=tiny,labelfont={color=black},justification=raggedright,singlelinecheck=off}
-    \caption{Hiking Cycles Across Time}
+    \caption{Hiking Cycles Across Time, Source: SNB Data Portal \cite{snb2023}}
     \label{fig:hiking_summary}
 \end{figure}
 \end{minipage}
 \end{center}
 
 \begin{center}
-\begin{minipage}{0.8\textwidth}
+\begin{minipage}{1\textwidth}
 \begin{figure}[H]
     \includegraphics[width=\textwidth]{Test/deposit_summary_SNB.pdf}
     \captionsetup{font=tiny,labelfont={color=black},justification=raggedright,singlelinecheck=off}
-    \caption{Deposit Rates Summary across Hiking Periods}
+    \caption{Deposit Rates Summary across Hiking Periods, Source: SNB Data Portal \cite{snb2023}}
     \label{fig:deposit_summary}
 \end{figure}
 \end{minipage}
@@ -194,14 +205,14 @@ A higher \( \beta_t \) indicates a stronger response of deposit rates to policy 
 \subsection{Deposit Betas}
 \begin{frame}
 \frametitle{Swiss Case Study: Deposit Betas}
-\text{Charting Deposit Betas over Time}
+\text{Plotting Deposit Betas over Time}
 \begin{center}
-\begin{minipage}{0.8\textwidth}
+\begin{minipage}{1\textwidth}
 \begin{figure}[H]
     \includegraphics[width=\textwidth]{Test/deposit_beta_SNB.pdf}
     \captionsetup{font=tiny,labelfont={color=black},justification=raggedright,singlelinecheck=off}
-    \caption{Deposit Rates Summary across Hiking Periods}
-    \label{fig:deposit_summary}
+    \caption{Deposit Rates Summary across Hiking Periods, Source: SNB Data Portal \cite{snb2023}}
+    \label{fig:deposit_betas}
 \end{figure}
 \end{minipage}
 \end{center}
@@ -211,11 +222,21 @@ A higher \( \beta_t \) indicates a stronger response of deposit rates to policy 
 \begin{frame}
 \frametitle{Swiss Case Study: Analysis of Results}
 \begin{itemize}
-    \item bullet 1
-    \item bullet 2
-    \item bullet 3
+    \item \textbf{Steeper Pass-Through Effect in Recent Cycle:}
+    \begin{itemize}
+        \item The current hiking cycle (Cycle 4) shows a steeper pass-through effect compared to the 2000 hikes (Cycle 1) and the '05-'08 hikes (Cycle 3).
+    \end{itemize}
+        \item \textbf{Exclusion of 2004 Hike (Cycle 2):}
+    \begin{itemize}
+        \item Although technically a rate hike, economically it wasn't significant. The conditions remained accommodative, and deposit rates did not adjust.
+    \end{itemize}
+        \item \textbf{Conclusions:}
+    \begin{itemize}
+        \item The current cycle has captured the same percentage of policy adjustment in a shorter time.
+        \item This is noteworthy, especially considering the lag in response is yet to be observed.
+        \item The sub-zero starting point gave policy rates a 'head-start', delaying pressure on deposit rates.
+    \end{itemize}
 \end{itemize}
-    
 \end{frame}
 
 \section{Project Architecture}
@@ -245,5 +266,9 @@ A higher \( \beta_t \) indicates a stronger response of deposit rates to policy 
 \end{itemize}
 \end{frame}
 
-\end{document}
+\section{References}
+\begin{frame}
+\printbibliography[heading=none] 
+\end{frame}
 
+\end{document}
