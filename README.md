@@ -76,6 +76,14 @@ Project Organization
 
 Using Dev Containers we were able to create a Docker container that will automatically install the requirements.txt file and create a PostgresDB instance. This will allow us to run the application locally and in Github Codespaces. You can learn more about Dev Containers here: <https://code.visualstudio.com/docs/remote/containers>
 
+# Project Architecture
+
+For the Project we will be using a FastAPI application to create an API that will allow us to interact with the data. The API will be connected to a PostgresDB instance that will store the data. The data will be imported from a CSV file into the PostgresDB instance using a Python script. The following diagram shows the architecture of the project.
+
+![Alt text](reports/figures/ingestion_pipline.png)
+
+We can then use Notebooks to explore the data and create visualizations with Read only access to the PostgresDB instance. 
+
 # Class Materials
 
 <https://github.com/ipozdeev/it-skills-for-research>
