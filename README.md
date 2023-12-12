@@ -105,7 +105,7 @@ pip install -r requirements.txt
 2. Clone the repository to your local machine
    ```git clone https://github.com/Butch78/Bank-Size-Central-Bank-Sensitivity.git```
 
-3. After you open the project, the following pop-up should appear. Click "Reopen in Container"
+3. After you open the project in Vscode, the following pop-up should appear. Click "Reopen in Container"
 
 ![Alt text](assets/dev_containter_popup.png)
 
