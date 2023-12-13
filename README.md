@@ -105,11 +105,11 @@ pip install -r requirements.txt
 2. Clone the repository to your local machine
    ```git clone https://github.com/Butch78/Bank-Size-Central-Bank-Sensitivity.git```
 
-3. After you open the project in Vscode, the following pop-up should appear. Click "Reopen in Container"
+3. After you open the root project in Vscode, the following pop-up should appear. Click "Reopen in Container"
 
 ![Alt text](assets/dev_containter_popup.png)
 
-If not click the green button in the bottom left corner and then select "Reopen in Container"
+If not click the button in the bottom left corner and then select "Reopen in Container" or type into the command prompt at the top an enter the following command ```reopen in container```
 
 This will build the Docker container and install the requirements.txt file automatically along with creating a PostgresDB instance.
 
