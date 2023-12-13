@@ -109,7 +109,7 @@ pip install -r requirements.txt
 
 ![Alt text](assets/dev_containter_popup.png)
 
-If not click the button in the bottom left corner and then select "Reopen in Container" or type into the command prompt at the top an enter the following command ```reopen in container```
+If not click the button in the bottom left corner and then select "Reopen in Container" or type into the command prompt at the top an enter the following command ```>Reopen in container```
 
 This will build the Docker container and install the requirements.txt file automatically along with creating a PostgresDB instance.
 
