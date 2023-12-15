@@ -13,7 +13,7 @@ class TargetRates(SQLModel, table=True):
     date: datetime = Field(..., description="The date of the record")
     value: float = Field(..., description="The value of the SNB policy rate target")
 
-    class Config:
+    class ConfigDict:
         from_attributes = True
 
 
@@ -24,6 +24,8 @@ class TargetRatesCreate(TargetRatesBase):
 class TargetRatesRead(TargetRatesBase):
     pass
 
+class TargetRatesCreateOut(TargetRatesCreate):
+    id: int
 
 class TargetRatesUpdate(TargetRatesBase):
     pass

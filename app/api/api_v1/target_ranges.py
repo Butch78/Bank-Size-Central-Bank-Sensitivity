@@ -3,18 +3,17 @@ from sqlmodel import Session
 
 from app.utils.deps import get_session
 from app import crud
-from app.schema.target_range import TargetRangesCreate, TargetRangesRead
+from app.schema.target_range import TargetRangesCreate, TargetRangesRead, TargetRangesCreateOut
 
 router = APIRouter()
 
 
-@router.post("", response_model=TargetRangesRead)
+@router.post("", response_model=TargetRangesCreateOut)
 async def create_target_ranges(
     *,
     session: Session = Depends(get_session),
     target_ranges: TargetRangesCreate,
-) -> TargetRangesRead:
-    print(target_ranges)
+) -> TargetRangesCreateOut:
     return crud.target_ranges.create(db=session, obj_in=target_ranges)
 
 

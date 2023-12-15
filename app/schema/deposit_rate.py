@@ -13,13 +13,15 @@ class DepositRates(SQLModel, table=True):
     date: datetime = Field(..., description="The date of the record")
     value: float = Field(..., description="The actual deposit rate data")
 
-    class Config:
+    class ConfigDict:
         from_attributes = True
 
 
 class DepositRatesCreate(DepositRatesBase):
     pass
 
+class DepositRatesCreateOut(DepositRatesCreate):
+    id: int
 
 class DepositRatesRead(DepositRatesBase):
     pass
@@ -27,3 +29,4 @@ class DepositRatesRead(DepositRatesBase):
 
 class DepositRatesUpdate(DepositRatesBase):
     pass
+

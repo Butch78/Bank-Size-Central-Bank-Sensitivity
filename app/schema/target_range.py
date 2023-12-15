@@ -23,7 +23,7 @@ class TargetRanges(SQLModel, table=True):
         ..., description="The upper bound of the SNB policy rate target"
     )
 
-    class Config:
+    class ConfigDict:
         from_attributes = True
 
 
@@ -34,6 +34,8 @@ class TargetRangesCreate(TargetRangesBase):
 class TargetRangesRead(TargetRangesBase):
     pass
 
+class TargetRangesCreateOut(TargetRangesCreate):
+    id: int
 
 class TargetRangesUpdate(TargetRangesBase):
     pass

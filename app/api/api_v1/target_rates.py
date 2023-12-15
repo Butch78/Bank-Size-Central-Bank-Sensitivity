@@ -3,17 +3,17 @@ from sqlmodel import Session
 
 from app.utils.deps import get_session
 from app import crud
-from app.schema.target_rate import TargetRatesCreate, TargetRatesRead
+from app.schema.target_rate import TargetRatesCreate, TargetRatesRead, TargetRatesCreateOut
 
 router = APIRouter()
 
 
-@router.post("", response_model=TargetRatesRead)
+@router.post("", response_model=TargetRatesCreateOut)
 async def create_target_rates(
     *,
     session: Session = Depends(get_session),
     target_rates: TargetRatesCreate,
-) -> TargetRatesRead:
+) -> TargetRatesCreateOut:
     print(target_rates)
     return crud.target_rates.create(db=session, obj_in=target_rates)
 

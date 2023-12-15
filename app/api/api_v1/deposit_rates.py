@@ -3,17 +3,17 @@ from sqlmodel import Session
 
 from app.utils.deps import get_session
 from app import crud
-from app.schema.deposit_rate import DepositRatesCreate, DepositRatesRead
+from app.schema.deposit_rate import DepositRatesCreate, DepositRatesRead, DepositRatesCreateOut
 
 router = APIRouter()
 
 
-@router.post("", response_model=DepositRatesRead)
+@router.post("", response_model=DepositRatesCreateOut)
 async def create_deposit_rate(
     *,
     session: Session = Depends(get_session),
     deposit_rate: DepositRatesCreate,
-) -> DepositRatesRead:
+) -> DepositRatesCreateOut:
     print(deposit_rate)
     return crud.deposit_rates.create(db=session, obj_in=deposit_rate)
 

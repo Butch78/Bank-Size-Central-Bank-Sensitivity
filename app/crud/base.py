@@ -15,20 +15,20 @@ class CRUDBase(Generic[ModelType, CreateSchemaType, UpdateSchemaType]):
 
     def get(self, db: Session, id: Any) -> Optional[SQLModel]:
         try:
-            return db.query(self.model).filter(self.model.id == id).first()
+            return db.exec(self.model).filter(self.model.id == id).first()
         except Exception:
             print(f"{self.model.__name__} with the {id} id not found")
 
     def get_multi(self, db: Session, *, skip=0, limit=100) -> List[SQLModel]:
         try:
-            return db.query(self.model).offset(skip).limit(limit).all()
+            return db.exec(self.model).offset(skip).limit(limit).all()
         except Exception as e:
             print(f"{self.model.__name__} not found")
             print(e)
 
     def create(self, db: Session, *, obj_in: CreateSchemaType) -> Optional[SQLModel]:
         try:
-            db_model = self.model(**obj_in.dict())
+            db_model = self.model(**obj_in.model_dump())
             db.add(db_model)
             db.commit()
             db.refresh(db_model)
@@ -56,7 +56,7 @@ class CRUDBase(Generic[ModelType, CreateSchemaType, UpdateSchemaType]):
             db_model = db.get(self.model, id)
             if not db_model:
                 raise HTTPException(status_code=404, detail="Hero not found")
-            json_data = obj_in.dict(exclude_unset=True)
+            json_data = obj_in.model_dump(exclude_unset=True)
             for key, value in json_data.items():
                 setattr(db_model, key, value)
             db.add(db_model)
@@ -69,7 +69,7 @@ class CRUDBase(Generic[ModelType, CreateSchemaType, UpdateSchemaType]):
 
     def delete(self, db: Session, *, id: Any) -> Optional[SQLModel]:
         try:
-            db_obj = db.query(self.model).filter(self.model.id == id).first()
+            db_obj = db.exec(self.model).filter(self.model.id == id).first()
             if db_obj is None:
                 raise HTTPException(
                     status_code=404, detail=f"{self.model.__name__} not found"
