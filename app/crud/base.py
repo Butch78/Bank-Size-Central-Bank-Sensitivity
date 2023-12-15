@@ -1,6 +1,6 @@
 from typing import Any, Generic, List, Optional, TypeVar
 
-from sqlmodel import SQLModel
+from sqlmodel import SQLModel, select
 from sqlmodel import Session
 from fastapi import HTTPException
 
@@ -15,13 +15,16 @@ class CRUDBase(Generic[ModelType, CreateSchemaType, UpdateSchemaType]):
 
     def get(self, db: Session, id: Any) -> Optional[SQLModel]:
         try:
-            return db.query(self.model).filter(self.model.id == id).first()
+            statement = select(self.model).where(self.model.id == id)
+            result = db.exec(statement)
+            return result.one()
         except Exception:
             print(f"{self.model.__name__} with the {id} id not found")
 
     def get_multi(self, db: Session, *, skip=0, limit=100) -> List[SQLModel]:
         try:
-            return db.query(self.model).offset(skip).limit(limit).all()
+            statement = select(self.model).offset(skip).limit(limit)
+            return db.exec(statement)
         except Exception as e:
             print(f"{self.model.__name__} not found")
             print(e)
@@ -69,7 +72,8 @@ class CRUDBase(Generic[ModelType, CreateSchemaType, UpdateSchemaType]):
 
     def delete(self, db: Session, *, id: Any) -> Optional[SQLModel]:
         try:
-            db_obj = db.query(self.model).filter(self.model.id == id).first()
+            statement = select(self.model).where(self.model.id == id)
+            db_obj = db.exec(statement)
             if db_obj is None:
                 raise HTTPException(
                     status_code=404, detail=f"{self.model.__name__} not found"
