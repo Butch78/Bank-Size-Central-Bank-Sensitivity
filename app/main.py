@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import RedirectResponse
 from contextlib import asynccontextmanager
 
 
@@ -32,4 +33,4 @@ app.add_middleware(
 
 @app.get("/")
 def root():
-    return f"Welcome to the {settings.PROJECT_NAME} Application. Add /docs to the URL to see API methods."
+    return RedirectResponse(url="/docs", status_code=302)

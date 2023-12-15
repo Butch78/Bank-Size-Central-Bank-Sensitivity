@@ -1,4 +1,4 @@
-# Deposit rate sensitivity to central bank policy taget adjustments
+# Deposit rate sensitivity to Central Bank policy target adjustments
 
 Analysis of deposit rate pass through effects from tightening monetary conditions. How the sensitivity to adjustments in central bank policy targets varies across hiking cycles.
 
@@ -33,8 +33,17 @@ Project Organization
     ├── notebooks          <- Jupyter notebooks. 
     │
     ├── reports            <- Generated analysis as HTML, PDF, LaTeX, etc.
-    │   └── figures        <- Generated graphics and figures to be used in reporting.
-    |   └── template.tex   <- To compile the LaTeX document into a PDF report, ensure that the PDFs generated in "figures" are placed in the same directory as main .tex file. 
+    │   └── figures        <- Generated graphics and figures to be used in the reports.
+    |   └── text           <- The folder for the report text files
+    |       ├── paper               <- The folder for the report Latex & Output pdf files
+    |       |   ├── paper.pdf       <- The report pdf file
+    |       |   └── paper.tex       <- The report LateX file
+    |       |
+    |       ├── bibliography.bib    <- The bibliography file for the report & presentation
+    |       |
+    |       └── presenation         <- The folder for the presentation Latex & Output pdf files
+    |           ├── slides.pdf      <- The presentation pdf file
+    |           └── slides.tex      <- The Beamer presentation LateX file
     │
     ├── app                <- Source code for use in this project.
     │   ├── __init__.py    <- Makes app a Python module
@@ -57,7 +66,6 @@ Project Organization
     │   │   ├── deposit_rate.py         <- SQLModel model for deposit rates
     │   │   ├── target_rate.py          <- SQLModel model for target rates
     |   |   └── target_range.py         <- SQLModel model for target ranges
-    |   |  
     │   │
     │   └── utils                                   <- Scripts to import data and create the database
     │       ├── config.py                           <- Configuration file for the application that loads the environment variables
@@ -74,31 +82,29 @@ Project Organization
 
 <p><small>Project based on the <a target="_blank" href="https://drivendata.github.io/cookiecutter-data-science/">cookiecutter data science project template</a>. #cookiecutterdatascience</small></p>
 
-Using Dev Containers we were able to create a Docker container that will automatically install the requirements.txt file and create a PostgresDB instance. This will allow us to run the application locally and in Github Codespaces. You can learn more about Dev Containers here: <https://code.visualstudio.com/docs/remote/containers>
-
-# Project Architecture
-
-For the Project we will be using a FastAPI application to create an API that will allow us to interact with the data. The API will be connected to a PostgresDB instance that will store the data. The data will be imported from a CSV file into the PostgresDB instance using a Python script. The following diagram shows the architecture of the project.
-
-![Alt text](reports/figures/ingestion_pipline.png)
-
-We can then use Notebooks to explore the data and create visualizations with Read only access to the PostgresDB instance. 
-
 # Class Materials
 
 <https://github.com/ipozdeev/it-skills-for-research>
 
 # Set Up Instructions
 
-## Github Codespaces
+### Option 1: Github Codespaces (devcontainer) - Automatic Dev Environment
 
-If you are running the application in Github Codespaces it should Automatically build the application and install the ```requirements.txt``` file. if not run the following command in the terminal:
+To get started, create a codespace for this repository by clicking this 👇
+
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/new?hide_repo_select=true&ref=master&repo=708763302)
+
+A selection menu will open allowing you to create a Codespace. After create a Codespace it  will open in a web-based version of Visual Studio Code. The [dev container](.devcontainer/devcontainer.json) is fully configured with software needed for this project along with added development vscode extensions such as [Jupyter Notebook](https://marketplace.visualstudio.com/items?itemName=ms-toolsai.jupyter), Python, and Docker.
+
+It should Automatically build the application and install the ```requirements.txt``` file. if not run the following command in the terminal:
 
 ```bash
 pip install -r requirements.txt
 ```
 
-## Local Machine
+### Option 2: Local Machine
+
+This repository can be [used locally](https://code.visualstudio.com/docs/devcontainers/tutorial) on a system running Visual Studio Code and Docker, or in a remote cloud based [Codespaces](https://github.com/features/codespaces) environment as shown in Option 1.
 
 1. Ensure you have Docker installed on your local machine, if not follow the instructions here: <https://docs.docker.com/get-docker/>
 
@@ -111,14 +117,26 @@ pip install -r requirements.txt
 
 If not click the button in the bottom left corner and then select "Reopen in Container" or type into the command prompt at the top an enter the following command ```>Reopen in container```
 
-This will build the Docker container and install the requirements.txt file automatically along with creating a PostgresDB instance.
+This will build the Docker container and should install the requirements.txt file 
+Automatically build the application and install the ```requirements.txt``` file along with creating a PostgresDB instance. if not run the following command in the terminal:
+
+```bash
+pip install -r requirements.txt
+```
 
 # Start Application Command
 
-rename the ```.env.example``` file to ```.env```
+rename the ```.env.example``` in the root directory to ```.env```
 
 Then the following command will load the Data into the PostgresDB and start a FastAPI application on port 8000, You can view the API documentation at <http://localhost:8000/docs>
 
 ```bash
 uvicorn app.main:app --reload
 ```
+
+Once the application has started The csv files from ```/data/raw```  will automatically be loaded into the PostgresDB instance. 
+
+We can then connect to the Jupyter Notebook: ```notebooks/snb-data-processing.ipynb```  to explore the data with a read only connection to the PostgresDB instance.
+
+
+
