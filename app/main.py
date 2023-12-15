@@ -32,4 +32,4 @@ app.add_middleware(
 
 @app.get("/")
 def root():
-    return "Welcome to the FastAPI and Postgres in a dev container demonstration. Add /docs to the URL to see API methods."
+    return f"Welcome to the {settings.PROJECT_NAME} Application. Add /docs to the URL to see API methods."

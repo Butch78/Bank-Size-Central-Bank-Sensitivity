@@ -41,21 +41,21 @@ Project Organization
     |   ├── main.py        <- Main application file for FastAPI application
     │   ├── api            <- Configuration file for FastAPI application
     |   |   ├── api_v1
-    |   |   |   └─ restaurants.py   <- API endpoint for restaurants an example endpoint if we wanted to extend the application    
-    │   │   └── api.py              <- API endpoints for the application
+    |   |   |   ├─ deposit_rates.py     <- API endpoints for deposit rates 
+    |   |   |   ├─ target_rates.py      <- API endpoints for target rates
+    |   |   |   └─ target_ranges.py     <- API endpoints for target ranges
+    │   │   └── api.py                  <- API endpoints for the application
     │   │
     │   ├── crud                        <- The CRUD (Create, Read, Update, Delete) operations folder for the application
     │   │   ├── base.py                 <- Base CRUD operations
     |   |   ├── __init__.py             <- Makes crud a Python module
     |   |   ├── crud_deposit_rates.py   <- CRUD operations for deposit rates
     |   |   ├── crud_target_ranges.py   <- CRUD operations for target ranges
-    |   |   ├── crud_target_rates.py    <- CRUD operations for target rates
-    |   |   └── crud_restaurants.py     <- CRUD operations for restaurants an example object if we wanted to extend the application
+    |   |   └── crud_target_rates.py    <- CRUD operations for target rates
     │   │
     │   ├── schema                      <- Folder for the SQLModel models for the application
     │   │   ├── deposit_rate.py         <- SQLModel model for deposit rates
     │   │   ├── target_rate.py          <- SQLModel model for target rates
-    │   │   ├── restaurant.py           <- SQLModel model for restaurants an example object if we wanted to extend the application
     |   |   └── target_range.py         <- SQLModel model for target ranges
     |   |  
     │   │
