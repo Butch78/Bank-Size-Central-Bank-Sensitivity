@@ -86,6 +86,12 @@ Project Organization
 
 <https://github.com/ipozdeev/it-skills-for-research>
 
+# Paper & Presentation Compiling
+
+We used [Latexdevcontainer](https://github.com/qdm12/latexdevcontainer) to compile the paper and presentation.
+We simple had to copy accoss the files from the ```reports/``` folder to the [Latexdevcontainer](https://github.com/qdm12/latexdevcontainer) project and it would produce the pdf files on save.
+
+
 # Set Up Instructions
 
 ### Option 1: Github Codespaces (devcontainer) - Automatic Dev Environment
