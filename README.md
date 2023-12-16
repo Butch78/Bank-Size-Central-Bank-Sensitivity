@@ -10,7 +10,7 @@ The methodology applied in this project is designed to be replicable across diff
 
 ## Data
 
-This project is set up to use monthly policy rates and deposit rates for a particular country. For those looking to replicate this analysis on a different country, if a country doesn't have a specific target, it may be extrapolated from a target range. In the example case, we use the midpoint of a range from the Swiss National Bank from 2000-2019, and then a target from 2019 onwards (they introduced a target at that time).
+This project is set up to use monthly policy rates and deposit rates for a particular country. We run this analysis on Switzerland, using data from the Swiss National Bank (SNB). For those looking to replicate this analysis on a different country, if a country doesn't have a specific target, it may be extrapolated from a target range. In the example case, we use the midpoint of a range from the Swiss National Bank from 2000-2019, and then a target from 2019 onwards (they introduced a target at that time).
 
 Project Organization
 ------------
