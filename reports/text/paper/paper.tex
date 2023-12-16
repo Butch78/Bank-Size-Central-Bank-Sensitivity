@@ -46,7 +46,7 @@
     
     \vspace{1cm}
     \LARGE
-    This research project focuses on examining how savings deposit rates within a country respond to changes in central bank policy rates. 
+    This research project focuses on examining how savings deposit rates within Switzerland respond to changes in central bank policy rates. 
     
     \vspace{1cm}
     \textbf{Authors:}\\ John Hojnacki \\ Matthew Aylward \\ Victoria Gemperle
@@ -58,24 +58,27 @@
     
 \end{titlepage}
 
-
 \section{Introduction}
 
-    \linespread{1}  % Adjust the factor as needed
-    
-Central Banks around the world implement monetary policy in a variety of different ways, but one key transmission mechanism is typically a short-term rate at which commercial banks can borrow from the central bank. This rate, the ‘policy rate’, effectively becomes a floor on other rates, and measuring the sensitivity of other rates, such as the deposit rate, to changes in the policy rate, can give an indication as to how quickly monetary policy is transmitted in each cycle. For this project, the objective is to evaluate the sensitivity of deposit rates on consumer savings accounts to changes in the central banks’ policy rate across different economic cycles. Deposit rates are an important focal point because they affect the majority of households, and thus have a broad impact on society. The 2022 survey of Consumer Finance (US) found that 98.6\% of households had a transaction account, whereas only 11.5\% of households owned bonds\cite{scf2022}.\\
+\linespread{1}  % Adjust the factor as needed
 
-One way to measure the sensitivity of deposit rates to policy rates is by calculating the cumulative deposit beta, which measures the relative change in deposit rates to policy rates over the course of a hiking cycle. Researchers at the NY Federal Reserve have applied this analysis in a US Context and found that the most recent round of hiking may be on track to outpace previous cycles in terms of pass through effects\cite{deposit2023}. In this paper, we take inspiration from the research done on the US, and apply it to Switzerland, with some slight modifications to the method.
+Central banks globally employ a variety of methods to implement monetary policy, with a key mechanism often being the short-term policy rate. This rate influences the borrowing costs of commercial banks from the central bank, setting a baseline for other interest rates in the economy. Understanding how other rates, such as consumer deposit rates, respond to changes in the policy rate is crucial for gauging the speed and effectiveness of monetary policy transmission.\\
+
+In this study, we aim to assess the responsiveness of deposit rates on consumer savings accounts to shifts in central bank policy rates across different economic cycles. Deposit rates are particularly significant as they directly impact a large portion of the population. For instance, a 2022 US Consumer Finance Survey revealed that 98.6\% of households possess a transaction account, in contrast to only 11.5\% holding bonds\cite{scf2022}, underscoring the widespread influence of deposit rates.\\
+
+We adopt the concept of the cumulative deposit beta to measure the relative change in deposit rates vis-à-vis policy rates during a rate hiking cycle. This approach, previously applied by researchers at the New York Federal Reserve in a US context\cite{deposit2023}, will be adapted and applied to the Swiss banking sector, with necessary modifications to suit data availability.
 
 \section{Data}
 
-This project requires only monthly policy rates and deposit rates for a particular country. If a country doesn't have a specific target, it may be extrapolated from a target range. In the example case, we use the midpoint of a range from the Swiss National Bank from 2000-2019, and then a target from 2019 onwards (they introduced a target at that time). If deposit rates are not available historically, or contain discrepancies due to changes in calculation methodology, as is the case in the US, alternative data may be employed with the same economic meaning. In the US case, the NY Fed utilizes bank financial reports to calculate the deposit rate as a function of interest paid on deposits over interest bearing deposits\cite{deposit2023}. The main criteria of the data used for this analysis is that it represents economically both the key policy rate of a central bank, and a key rate that is significant to consumers. Aside from this, creativity is encouraged.\\
+For this analysis, we require monthly data on policy rates and deposit rates. In cases where a specific policy rate target isn't defined, an average value within a target range can be used. Our study focuses on Switzerland, where we utilize data from the Swiss National Bank spanning from 2000 to 2019 based on a target range, and subsequently, a specific target post-2019.\\
+
+Historical availability and consistency of deposit rate data can pose challenges. For instance, a single deposit rate is hard to come by in the US. Researchers at the NY Fed calculate the rate as a ratio of interest paid on deposits to interest-bearing deposits\cite{deposit2023}. We adopted a different approach for Switzerland, using a savings deposit rate available directly from the Swiss National Bank. The choice and treatment of data in this study are guided by the need to represent economically meaningful rates. For future applications of this methodology to different contexts, creativity is encouraged, especially in cases where direct data may not be available or may require adjustment for consistency and comparability.\\
 
 \section{Methodology}
 
 \subsection{Identification of Hiking Cycles}
 
-The methodology for identifying hiking cycles utilizes a precise algorithm, with time (\( t \)) measured in monthly intervals. A hiking period is defined as a sequence of months during which there is a consistent increase in the policy rate. The criteria for a month to be considered part of a hiking period are as follows:
+We derive our own methodology for identifying hiking cycles, utilizing a precise algorithm, with time (\( t \)) measured in monthly intervals. A hiking period is defined as a sequence of months during which there is a consistent increase in the policy rate. The criteria for a month to be considered part of a hiking period are as follows:
 
 \begin{enumerate}
     \item \textbf{Direct Increase:} There must be an observed increase in the policy rate compared to the preceding month.
@@ -91,6 +94,9 @@ This forward-looking approach, termed 'look-ahead logic', is applicable in an ex
 \textbf{Inclusion Criteria and Unique Identifiers}
 
 Critical to our analysis is the inclusion of the month preceding an official rate hike. Its inclusion is relevant to anchor the starting point and provide a basis for comparison as the hiking cycle progresses. Furthermore, each identified hiking period is assigned a unique identifier. This facilitates a granular analysis, allowing for a comparative assessment across different cycles.
+
+\subsection{Labeling periods of Rising Deposit Rates}
+Once a hiking cycle has commenced, we begin monitoring changes in the deposit rate. This monitoring continues even once the hiking cycle itself has technically ended. The objective is to capture the peak in deposit rates intra-cycle with the logic that capturing changes in deposit rates during the hiking cycle alone would miss the lagged effect of monetary policy pass-through to the economy.
 
 \subsection{Calculation of Deposit Betas}
 
@@ -108,75 +114,94 @@ A higher value of \( \beta_t \) indicates a more pronounced response of deposit 
 
 The methodology applied in this project is designed to be replicable across different countries and time periods, which allows for its usage in scenarios where central banks provide explicit targets, target ranges, or operate without a clearly defined target. The project can be employed to analyze and compare the sensitivity of deposit rates on consumer savings accounts to changes in central banks’ policy rates across different economic and temporal contexts. This cross-country and cross-temporal applicability assures the project's utility in capturing variations in monetary policy transmission mechanisms globally.\\
 
-\section{History in a Swiss Context}
+\section{Applied Analysis: Switzerland}
+
+We now turn to Switzerland with the methodology to a) identify hiking cycles, and b) measure the deposit beta throughout these identified cycles.\\
+
+\subsection{History in a Swiss Context}
+
+In December of 1999, the Swiss National Bank (‘SNB’) announced its intention to steer money market rates through the mechanism of a target range, marking a significant shift in its monetary policy strategy. This change coincided with the decision to begin tightening monetary policy over the next year \cite{snb1999monetary}, providing a crucial context for our analysis, which begins in January of 2000.
 
 \begin{figure}[h]
     \centering
+    \includegraphics[width=1\textwidth]{../../figures/rates_time_SNB.pdf}
+    \caption{Interest rate history for Switzerland, Source: SNB Data Portal\cite{snb2023}}
+    \label{fig:rates_time}
+\end{figure}
+
+Figure \ref{fig:rates_time} presents a comprehensive view of the interest rate history in Switzerland. The graph highlights significant shifts in policy rates and provides an initial visual representation of how these rates have fluctuated over time. 
+
+\subsection{Identification of Hiking Cycles}
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=1\textwidth]{../../figures/hiking_summary_SNB.pdf}
+    \caption{Hiking Cycles Across Time, Source: SNB Data Portal\cite{snb2023}, Own calculations}
+    \label{fig:hiking_cycles}
+\end{figure}
+
+Figure \ref{fig:hiking_cycles} delineates the identified hiking cycles in Switzerland. Our analysis reveals four distinct periods of policy rate increases: 2000, 2004, 4Q05-, and 2022-2023. This graph not only illustrates the duration but also the intensity of each hiking cycle.\\
+
+\textbf{2000 Hiking Cycle}: The first cycle in our analysis period marked a significant phase of monetary tightening, as the SNB began to shift its policy stance in response to changing economic conditions at the turn of the millennium.\\
+
+\textbf{2004 Hiking Cycle}: Although the 2004 cycle technically qualifies as a rate hike, we exclude it from our detailed analysis. This brief period was not a true tightening of monetary conditions but rather a reversal of the cuts made in 2003 to counter deflationary trends, as indicated by the SNB's monetary policy report\cite{snb2004monetary}. Our focus remains on more substantial policy shifts.\\
+
+\textbf{4Q05- Hiking Cycle}: This period, beginning in the fourth quarter of 2005, represented another phase of policy tightening. The changes in this cycle were more gradual, reflecting the SNB's adaptive approach to evolving economic indicators and conditions.\\
+
+\textbf{2022-2023 Hiking Cycle}: The most recent cycle in our analysis, this period is particularly noteworthy due to its context within the post-Covid-19 economic recovery. The SNB's policy adjustments during this time are critical for understanding the current dynamics of monetary policy transmission in Switzerland.\\
+
+By examining these cycles, especially the more economically significant ones, our analysis aims to provide a nuanced understanding of the relationship between policy rate changes and their effects on consumer financial products.\\
+
+\begin{figure}[h!]
+    \centering
     \includegraphics[width=1\textwidth]{../../figures/rates_shaded_SNB.pdf}
-    \caption{Policy and Deposit Rates for Switzerland}
+    \caption{Interest rate history for Switzerland with shaded regions for hiking cycles, Source: SNB Data Portal\cite{snb2023}, Own calculations}
     \label{fig:rates_shaded}
 \end{figure}
 
-The above Figure 3 show the SNB target/target midpoint (pre-2019) vs. savings deposit rates. We have identified 4 cycles, from which 3 will be analysed. Some observations:
+\subsection{Labeling Periods of Rising Deposit Rates}
 
-In December of 1999, the Swiss National Bank (‘SNB’) announced its intention to steer money market rates through the mechanism of a target range, a departure from the previous policy of targeting money supply. This change also coincided with the decision to begin tightening monetary policy over the next year. (source: SNB Quarterly bulletin, December 1999). This hiking cycle is the first of four which appears in the period of our analysis for Switzerland (2000, 2004, 4Q05-, and 2022-present day). However, the short hiking cycle in 2004 will be left out of our discussion for two reasons. First, the commentary from the SNB itself in the Monetary Policy Report at the time noted that while it was increasing the target range, overall policy remained expansionary. The second reason is that the hikes in this period were simply a reversal of the cuts which had taken place in March of 2003 to address deflation concerns. This resulted in no change in deposit rates, which interestingly had also experienced a muted reaction to the prior cut. The next true tightening of financial conditions began in March of 2006, and continued steadily until the Global Financial Crisis (“GFC”) necessitated easing of rates once again. The last hiking cycle begins in the wake of recovery from the Covid-19 Pandemic and continues through the time of this writing.\\ 
+The subsequent analysis of deposit rates during these identified hiking cycles reveals patterns that are crucial for understanding the transmission of policy changes to consumer financial products.
 
-
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=1\textwidth]{../../figures/hiking_summary_SNB.pdf}
-    \caption{Hiking Cycles Across Time}
-    \label{fig:your_pdf}
-\end{figure}
-
-\begin{figure}[h]
+\begin{figure}[h!]
     \centering
     \includegraphics[width=1\textwidth]{../../figures/deposit_summary_SNB.pdf}
-    \caption{Deposit Rates Summary across Hiking Periods}
+    \caption{Deposit Rates Summary across Hiking Periods, Source: SNB Data Portal\cite{snb2023}, Own calculations}
     \label{fig:deposit_summary}
 \end{figure}
 
+Figure \ref{fig:deposit_summary} shows how deposit rates responded during and after the identified hiking periods. The lag in response and the peak of deposit rates provide insights into the banking sector's reaction to policy changes. This figure is particularly informative when considering the different economic contexts of each hiking cycle.
 
-The above Figure 1 and Figure 2 show the comparative statistics for current and previous rounds of hiking, for both Policy and Deposit Rates respectively. Some observations:
+\subsection{Calculation of Deposit Betas}
 
-\begin{itemize}
-    \item 2004 hikes were a reversal to a previous level, the policy remained "accommodating";
-    \item Most recent cycle strongest from absolute and relative standpoint, but from zero starting point, this is not very informative in itself;
-    \item We observe a 9 month lag to peak deposit in 2000, 12 month lag in 2005-2008. 
-\end{itemize}
+In line with our earlier methodology, we calculated deposit betas for each identified hiking cycle in Switzerland. This metric is particularly useful for comparing cycles that vary in their starting points and lengths, where absolute or simple relative changes in rates might not provide a complete picture.
 
-The observed trend indicates a noticeable lag effect, with the months to peak revealing a 9-month lag in the first two hikes and a 12-month lag in subsequent ones. According to the methodology, it is technically asserted that the policy hiking for the SNB has ended, as it has remained unchanged for a few months, and the deposit rate continues to achieve new highs. As of now, there is a recorded 2-month lag, and the duration of this lag is yet to be determined.
-\\
-
-\begin{itemize}
-    \item The current cycle appears to demonstrate a higher degree of pass through in
-terms of how quickly deposit rates began moving, and in how much of the
-policy rate increases were being captured by the higher deposit rates;
-    \item At a high level, there is a notable presence of a delay between the points in time when policy rates reach their peaks and when deposit rates reach their maximum levels.
-\end{itemize}
-
-\subsection{Deposit Betas}
-
-For the deposit betas, a few observations:
-
-\begin{itemize}
-    \item Calculation: $\Delta$ deposit rate/$\Delta$ policy rate  (from beginning of each cycle);
-    \item Deposit beta for current cycle (red) shows much quicker pass through effect than the ‘05-’08 hikes (blue). (Figure 4 below);
-    \item Compared to ‘00 (grey), we’ve reached parity in total pass-through 5 quarters in, but the lagged effect likely to continue to increase;
-    \item Insight: on-track for record deposit pass through. 
-\end{itemize}
-
-\begin{figure}[h]
+\begin{figure}[h!]
     \centering
     \includegraphics[width=1\textwidth]{../../figures/deposit_beta_SNB.pdf}
-    \caption{Cumulative Swiss Deposit Betas in Hiking Cycles}
-    \label{fig:your_pdf}
+    \caption{Cumulative Swiss Deposit Betas in Hiking Cycles, Source: SNB Data Portal\cite{snb2023}, Own calculations}
+    \label{fig:deposit_betas}
 \end{figure}
 
-The deposit beta is what confirms our intuition from the historical chart. It demonstrates that we are seeing much higher pass through (5 quarters in) vs. ‘05-08, and a comparable level of pass through to the 2000 hikes, but with only two months of lag so far. \\
+Figure \ref{fig:deposit_betas} displays the cumulative Swiss Deposit Betas for the various hiking cycles. The graphical representation allows for a nuanced comparison of how deposit rate sensitivity to policy rate changes has evolved over distinct economic periods. This is especially critical when analyzing cycles that begin from different policy rate levels or have varying durations. By normalizing the changes in deposit rates relative to policy rates, deposit betas provide a more standardized and comparable measure across different monetary policy environments. This analytical approach offers a deeper understanding of the transmission of monetary policy in Switzerland.
 
-For Switzerland, the answer to the research question is that in the current tightening cycle, deposit rates have moved much quicker, and will likely capture much more of the increase in policy rates than has happened in the last 25 years
+\subsection{Discussion of Results}
 
+The analysis of deposit rate responses to monetary policy changes in Switzerland reveals complex dynamics, particularly when comparing the current tightening cycle with previous periods such as the 2000 hikes. A key observation is that while the total pass-through of policy rate changes to deposit rates appears similar approximately five months into both cycles, the underlying factors and timelines differ significantly.\\
+
+In the current cycle, policy rates began below zero, a unique starting point that influenced the initial response of deposit rates. For about the first six months, there was minimal pressure on deposit rates to adjust, likely due to the negative starting point of policy rates. However, once adjustments began, the deposit rates responded more rapidly than in previous cycles. This indicates that the magnitude of response in the current cycle might be understated if one only considers the total pass-through percentage without accounting for the delayed start.\\
+
+The comparison with the 2000 hikes underscores this point. In that cycle, deposit rates took longer to start moving, but eventually achieved a comparable level of pass-through. The quicker response in the current cycle, despite the delayed start, suggests a banking sector that is now more sensitive to policy changes, potentially reflecting a shift in market dynamics or monetary policy strategy.\\
+
+This analysis, however, must be contextualized within its limitations. The focus on Swiss data may not fully capture global banking trends, and external factors such as international economic conditions are not considered in this study. Nonetheless, these findings provide valuable insights into the evolving relationship between central bank policy rates and the banking sector's response, highlighting the need for a nuanced understanding of monetary policy transmission in different economic contexts.\\
+
+\section{Conclusion}
+
+This study has provided an examination of the response of deposit rates to policy rate changes in Switzerland. The findings reveal a notable change in the banking sector's responsiveness to monetary policy, particularly in the current tightening cycle. The higher and faster pass-through of policy rate changes to deposit rates underscores a more dynamic interplay between central bank actions and the banking sector.\\
+
+These insights are crucial for understanding the effectiveness of monetary policy as a tool for economic management. They also have significant implications for savers and borrowers, affecting the financial decisions of households and businesses.\\
+
+Future research could expand this analysis to other countries and economic cycles, enhancing our understanding of the global dynamics of monetary policy transmission. Additionally, investigating the role of other economic factors and their interaction with central bank policies would provide a more holistic view of the financial ecosystem.\\
 
 % Bibliography section
 \newpage  % Start a new page for the bibliography

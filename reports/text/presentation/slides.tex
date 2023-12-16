@@ -241,29 +241,66 @@ A higher \( \beta_t \) indicates a stronger response of deposit rates to policy 
 
 \section{Project Architecture}
 \begin{frame}
-\frametitle{Project Architecture}
-\textbf{Research Question:}
+\frametitle{Development Environment}
 \begin{itemize}
-  \item cloud cloud cloud cloud cloud cloud cloud cloud cloud cloud cloud cloud cloud cloud cloud cloud cloud cloud
-\end{itemize}
+    \item \textbf{GitHub Codespaces:} Cloud-based development environment for the project.
+    
+    \item \textbf{Dev Containers:} Ensures a consistent development environment across all contributors.
 
-\textbf{Our Approach:}
-\begin{itemize}
-  \item cloud cloud cloud cloud cloud cloud cloud cloud cloud cloud cloud cloud cloud cloud cloud cloud cloud cloud cloud cloud cloud cloud cloud cloud cloud cloud cloud cloud cloud cloud cloud cloud cloud cloud cloud cloud
-\end{itemize}
+    \item \textbf{Benefits:}
+      \begin{itemize}
+        \item Allows the group members to develop on low-powered devices
+        \item Version-controlled development environments.
+      \end{itemize}
+
+    \item \textbf{Workflow:}
+      \begin{itemize}
+        \item Developers access the project in GitHub Codespaces.
+        \item Dev containers automatically configure the development environment.
+        \item Changes are recorded with Git
+      \end{itemize}
+
+    \item \textbf{Tools:}
+      \begin{itemize}
+        \item Configuration as Code:  devcontainer.json, Dockerfile, docker-compose.yml
+      \end{itemize}
+  \end{itemize}
 \end{frame}
 
 \begin{frame}
-\frametitle{Project Architecture (cont...)}
-\textbf{Research Question:}
-\begin{itemize}
-  \item cloud cloud cloud cloud cloud cloud cloud cloud cloud cloud cloud cloud cloud cloud cloud cloud cloud cloud
-\end{itemize}
+\frametitle{Project Architecture}
+ \begin{columns}[t]
+    \begin{column}{0.5\textwidth}
+      \textbf{Data Ingestion:}
 
-\textbf{Our Approach:}
-\begin{itemize}
-  \item cloud cloud cloud cloud cloud cloud cloud cloud cloud cloud cloud cloud cloud cloud cloud cloud cloud cloud cloud cloud cloud cloud cloud cloud cloud cloud cloud cloud cloud cloud cloud cloud cloud cloud cloud cloud
-\end{itemize}
+      \begin{itemize}
+        \item \textbf{Source:} CSV files containing deposit rate data.
+        \item \textbf{Ingestion Process:} ETL process.
+        \item \textbf{Destination:} PostgreSQL Database.
+      \end{itemize}
+
+      \vspace{1em}
+
+      
+    \end{column}
+
+    \begin{column}{0.5\textwidth}
+      \textbf{Database Design:}
+
+      \begin{itemize}
+        \item Well-structured tables for different data entities.
+        \item Ensures data integrity and relationships.
+        \item Dedicated read-only account for the Notebooks.
+      \end{itemize}
+    \end{column}
+  \end{columns}
+
+\textbf{ETL}
+\begin{figure}
+    \centering
+    \includegraphics[width=0.75\textwidth]{reports/figures/ingestion_pipline.png}
+    \caption{ETL Process}
+  \end{figure}
 \end{frame}
 
 \section{References}
@@ -272,3 +309,4 @@ A higher \( \beta_t \) indicates a stronger response of deposit rates to policy 
 \end{frame}
 
 \end{document}
+
